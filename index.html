@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROMPT JAILBREAK · Inorya</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+    <!-- CSS Eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="hdr">
+        <a class='logo' href='/'>
+            <div class="logo-mark">
+                <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+            </div>
+            <span class="logo-text">Prompt<span>Vault</span></span>
+        </a>
+        <div class="hdr-right">
+            <button class="icon-btn" id="themeBtn" title="Ganti tema">
+                <svg class="icon" id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+            </button>
+            <a class='btn-outline' href='/admin'>
+                <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/>
+                </svg>
+                Admin
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="hero-bg">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+    </div>
+    <div class="hero-inner">
+        <div class="hero-badge">
+            <svg class="icon" width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            Koleksi Prompt AI by Yones
+        </div>
+        <h1>Prompt <em>Jailbreak</em><br>by Inorya</h1>
+        <p class="hero-sub">Kumpulan prompt jailbreak untuk berbagai macam AI.</p>
+        <div class="search-box">
+            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Cari prompt...">
+        </div>
+        <div class="stats-row">
+            <div class="stat"><div class="stat-n" id="statP">—</div><div class="stat-l">Total Prompt</div></div>
+            <div class="stat"><div class="stat-n" id="statC">—</div><div class="stat-l">Kategori</div></div>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="sidebar">
+        <div class="sidebar-label">Kategori</div>
+        <div class="cat-list" id="catList">
+            <div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content-top">
+            <div class="content-title">
+                <span id="activeLabel">Semua Prompt</span>
+                <span class="content-count" id="countLabel"></span>
+            </div>
+            <select class="sort-select" id="sortSel">
+                <option value="newest">Terbaru</option>
+                <option value="oldest">Terlama</option>
+                <option value="az">A → Z</option>
+            </select>
+        </div>
+        <div class="grid" id="grid">
+            <div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    crafted with care by <a href="#">Yones</a>
+</footer>
+
+<div class="overlay" id="overlay">
+    <div class="modal">
+        <div class="modal-head">
+            <div>
+                <div class="modal-badge" id="mBadge"></div>
+                <div class="modal-title" id="mTitle"></div>
+                <div class="modal-description" id="mDescription"></div>
+            </div>
+            <button class="close-btn" onclick="closeModal()">
+                <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body" id="mBody"></div>
+        <button class="modal-copy" id="mCopyBtn" onclick="copyModal()">
+            <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+            </svg>
+            Copy Prompt
+        </button>
+    </div>
+</div>
+
+<div class="toast" id="toast">
+    <svg class="icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+    </svg>
+    Prompt berhasil di-copy!
+</div>
+
+<!-- JavaScript Eksternal -->
+<script src="script.js"></script>
+</body>
+</html>
